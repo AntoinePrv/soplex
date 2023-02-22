@@ -481,13 +481,13 @@ void SoPlex_changeVarUpperReal(void* soplex, int colidx, double ub)
    so->changeUpperReal(colidx, ub);
 }
 
-/** changes upper bound vector of columns to ub **/
+/** gets upper bound vector of columns into ub **/
 void SoPlex_getUpperReal(void* soplex, double* ub, int dim)
 {
    SoPlex* so = (SoPlex*)(soplex);
    Vector ubvec(dim, ub);
 
-   so->getLowerReal(ubvec);
+   so->getUpperReal(ubvec);
 
    for(int i = 0; i < dim; ++i)
       ub[i] = ubvec[i];
