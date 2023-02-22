@@ -55,6 +55,12 @@ void SoPlex_addColReal(
    double ub
 );
 
+/** removes a single (floating point) column **/
+void SoPlex_removeColReal(
+   void* soplex,
+   int colidx
+);
+
 /** adds a single rational column **/
 void SoPlex_addColRational(
    void* soplex,
@@ -70,7 +76,7 @@ void SoPlex_addColRational(
    long ubdenom
 );
 
-/** adds a single (floating point) column **/
+/** adds a single (floating point) row **/
 void SoPlex_addRowReal(
    void* soplex,
    double* rowentries,
@@ -78,6 +84,12 @@ void SoPlex_addRowReal(
    int nnonzeros,
    double lb,
    double ub
+);
+
+/** removes a single (floating point) row **/
+void SoPlex_removeRowReal(
+   void* soplex,
+   int rowidx
 );
 
 /** adds a single rational row **/
@@ -116,14 +128,26 @@ void SoPlex_changeObjRational(void* soplex, long* objnums, long* objdenoms, int 
 /** changes left-hand side vector for constraints to lhs **/
 void SoPlex_changeLhsReal(void* soplex, double* lhs, int dim);
 
+/** changes left-hand side of a row to lhs **/
+void SoPlex_changeRowLhsReal(void* soplex, int rowidx, double lhs);
+
 /** changes rational left-hand side vector for constraints to lhs **/
 void SoPlex_changeLhsRational(void* soplex, long* lhsnums, long* lhsdenoms, int dim);
 
 /** changes right-hand side vector for constraints to rhs **/
 void SoPlex_changeRhsReal(void* soplex, double* rhs, int dim);
 
+/** changes right-hand side of a row to rhs **/
+void SoPlex_changeRowRhsReal(void* soplex, int rowidx, double rhs);
+
 /** changes rational right-hand side vector for constraints to rhs **/
 void SoPlex_changeRhsRational(void* soplex, long* rhsnums, long* rhsdenoms, int dim);
+
+/** changes both sides for constraints to given lhs and rhs **/
+void SoPlex_changeRangeReal(void* soplex, double* lhs, double* rhs, int dim);
+
+/** changes both sides of a row to given lhs and rhs **/
+void SoPlex_changeRowRangeReal(void* soplex, int rowidx, double lhs, double rhs);
 
 /** write LP to file **/
 void SoPlex_writeFileReal(void* soplex, char* filename);
@@ -157,6 +181,9 @@ void SoPlex_changeLowerReal(void* soplex, double* lb, int dim);
 
 /** changes lower bound of column to lb **/
 void SoPlex_changeVarLowerReal(void* soplex, int colidx, double lb);
+
+/** gets lower bound vector of columns into lb **/
+void SoPlex_getLowerReal(void* soplex, double* lb, int dim);
 
 /** changes vector of upper bounds to ub **/
 void SoPlex_changeUpperReal(void* soplex, double* ub, int dim);
