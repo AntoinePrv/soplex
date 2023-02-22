@@ -18,6 +18,29 @@ void SoPlex_free(void* soplex)
    delete so;
 }
 
+/** reads LP file in LP or MPS format according to READMODE parameter; returns true on
+ * success
+**/
+int SoPlex_readInstanceFile(void* soplex, const char* filename)
+{
+   SoPlex* so = (SoPlex*)(soplex);
+   return so->readFile(filename);
+}
+
+/** reads basis information from filename and returns true on success **/
+int SoPlex_readBasisFile(void* soplex, const char* filename)
+{
+   SoPlex* so = (SoPlex*)(soplex);
+   return so->readBasisFile(filename);
+}
+
+/** reads settings from filename and returns true on success **/
+int SoPlex_readSettingsFile(void* soplex, const char* filename)
+{
+   SoPlex* so = (SoPlex*)(soplex);
+   return so->loadSettingsFile(filename);
+}
+
 /** clears the (floating point) LP **/
 void SoPlex_clearLPReal(void* soplex)
 {
@@ -55,11 +78,25 @@ void SoPlex_setRational(void* soplex)
    so->setRealParam(SoPlex::OPTTOL, 0.0);
 }
 
+/** sets boolean parameter value **/
+void SoPlex_setBoolParam(void* soplex, int paramcode, int paramvalue)
+{
+   SoPlex* so = (SoPlex*)(soplex);
+   so->setBoolParam((SoPlex::BoolParam)paramcode, paramvalue);
+}
+
 /** sets integer parameter value **/
 void SoPlex_setIntParam(void* soplex, int paramcode, int paramvalue)
 {
    SoPlex* so = (SoPlex*)(soplex);
    so->setIntParam((SoPlex::IntParam)paramcode, paramvalue);
+}
+
+/** sets real parameter value **/
+void SoPlex_setRealParam(void* soplex, int paramcode, double paramvalue)
+{
+   SoPlex* so = (SoPlex*)(soplex);
+   so->setRealParam((SoPlex::RealParam)paramcode, paramvalue);
 }
 
 /** returns value of integer parameter **/

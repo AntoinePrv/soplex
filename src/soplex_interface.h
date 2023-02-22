@@ -9,6 +9,17 @@ void* SoPlex_create();
 /** frees SoPlex struct **/
 void SoPlex_free(void* soplex);
 
+/** reads LP file in LP or MPS format according to READMODE parameter; returns true on
+ * success
+**/
+int SoPlex_readInstanceFile(void* soplex, const char* filename);
+
+/** reads basis information from filename and returns true on success **/
+int SoPlex_readBasisFile(void* soplex, const char* filename);
+
+/** reads settings from filename and returns true on success **/
+int SoPlex_readSettingsFile(void* soplex, const char* filename);
+
 /** clears the (floating point) LP **/
 void SoPlex_clearLPReal(void* soplex);
 
@@ -21,8 +32,14 @@ int SoPlex_numCols(void* soplex);
 /** enables rational solving mode  **/
 void SoPlex_setRational(void* soplex);
 
+/** sets boolean parameter value **/
+void SoPlex_setBoolParam(void* soplex, int paramcode, int paramvalue);
+
 /** sets integer parameter value **/
 void SoPlex_setIntParam(void* soplex, int paramcode, int paramvalue);
+
+/** sets real parameter value **/
+void SoPlex_setRealParam(void* soplex, int paramcode, double paramvalue);
 
 /** returns value of integer parameter **/
 int SoPlex_getIntParam(void* soplex, int paramcode);
