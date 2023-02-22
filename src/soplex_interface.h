@@ -152,6 +152,15 @@ void SoPlex_changeVarBoundsRational(
    long ubdenom
 );
 
+/** changes vector of lower bounds to lb **/
+void SoPlex_changeLowerReal(void* soplex, double* lb, int dim);
+
+/** changes lower bound of column to lb **/
+void SoPlex_changeVarLowerReal(void* soplex, int colidx, double lb);
+
+/** changes vector of upper bounds to ub **/
+void SoPlex_changeUpperReal(void* soplex, double* ub, int dim);
+
 /** changes upper bound of column to ub **/
 void SoPlex_changeVarUpperReal(void* soplex, int colidx, double ub);
 

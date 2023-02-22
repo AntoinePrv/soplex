@@ -451,6 +451,29 @@ void SoPlex_changeVarBoundsRational(
    so->changeBoundsRational(colidx, lower, upper);
 }
 
+/** changes vector of lower bounds to lb **/
+void SoPlex_changeLowerReal(void* soplex, double* lb, int dim)
+{
+   SoPlex* so = (SoPlex*)(soplex);
+   Vector lbvec(dim, lb);
+   so->changeLowerReal(lbvec);
+}
+
+/** changes lower bound of column to ub **/
+void SoPlex_changeVarLowerReal(void* soplex, int colidx, double lb)
+{
+   SoPlex* so = (SoPlex*)(soplex);
+   so->changeLowerReal(colidx, lb);
+}
+
+/** changes vector of upper bounds to ub **/
+void SoPlex_changeUpperReal(void* soplex, double* ub, int dim)
+{
+   SoPlex* so = (SoPlex*)(soplex);
+   Vector ubvec(dim, ub);
+   so->changeUpperReal(ubvec);
+}
+
 /** changes upper bound of column to ub **/
 void SoPlex_changeVarUpperReal(void* soplex, int colidx, double ub)
 {
