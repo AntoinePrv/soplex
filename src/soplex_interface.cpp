@@ -293,7 +293,7 @@ void SoPlex_changeObjReal(void* soplex, double* obj, int dim)
 {
    SoPlex* so = (SoPlex*)(soplex);
    Vector objective(dim, obj);
-   return so->changeObjReal(objective);
+   so->changeObjReal(objective);
 }
 
 /** changes rational objective function vector to obj **/
@@ -314,7 +314,7 @@ void SoPlex_changeObjRational(void* soplex, long* objnums, long* objdenoms, int 
    }
 
    VectorRational objective(dim, objrational);
-   return so->changeObjRational(objective);
+   so->changeObjRational(objective);
 }
 
 /** changes left-hand side vector for constraints to lhs **/
@@ -322,7 +322,7 @@ void SoPlex_changeLhsReal(void* soplex, double* lhs, int dim)
 {
    SoPlex* so = (SoPlex*)(soplex);
    Vector lhsvec(dim, lhs);
-   return so->changeLhsReal(lhsvec);
+   so->changeLhsReal(lhsvec);
 }
 
 /** changes rational left-hand side vector for constraints to lhs **/
@@ -343,7 +343,7 @@ void SoPlex_changeLhsRational(void* soplex, long* lhsnums, long* lhsdenoms, int 
    }
 
    VectorRational lhs(dim, lhsrational);
-   return so->changeLhsRational(lhs);
+   so->changeLhsRational(lhs);
 }
 
 /** changes right-hand side vector for constraints to rhs **/
@@ -351,7 +351,7 @@ void SoPlex_changeRhsReal(void* soplex, double* rhs, int dim)
 {
    SoPlex* so = (SoPlex*)(soplex);
    Vector rhsvec(dim, rhs);
-   return so->changeRhsReal(rhsvec);
+   so->changeRhsReal(rhsvec);
 }
 
 /** changes rational right-hand side vector for constraints to rhs **/
@@ -372,7 +372,7 @@ void SoPlex_changeRhsRational(void* soplex, long* rhsnums, long* rhsdenoms, int 
    }
 
    VectorRational rhs(dim, rhsrational);
-   return so->changeRhsRational(rhs);
+   so->changeRhsRational(rhs);
 }
 
 /** write LP to file **/
@@ -416,14 +416,14 @@ void SoPlex_changeBoundsReal(void* soplex, double* lb, double* ub, int dim)
    SoPlex* so = (SoPlex*)(soplex);
    Vector lbvec(dim, lb);
    Vector ubvec(dim, ub);
-   return so->changeBoundsReal(lbvec, ubvec);
+   so->changeBoundsReal(lbvec, ubvec);
 }
 
 /** changes bounds of a column to lb and ub **/
 void SoPlex_changeVarBoundsReal(void* soplex, int colidx, double lb, double ub)
 {
    SoPlex* so = (SoPlex*)(soplex);
-   return so->changeBoundsReal(colidx, lb, ub);
+   so->changeBoundsReal(colidx, lb, ub);
 }
 
 /** changes rational bounds of a column to lbnum/lbdenom and ubnum/ubdenom **/
@@ -448,14 +448,14 @@ void SoPlex_changeVarBoundsRational(
    /* get rational upper bound */
    Rational upper(ubnum, ubdenom);
 
-   return so->changeBoundsRational(colidx, lower, upper);
+   so->changeBoundsRational(colidx, lower, upper);
 }
 
 /** changes upper bound of column to ub **/
 void SoPlex_changeVarUpperReal(void* soplex, int colidx, double ub)
 {
    SoPlex* so = (SoPlex*)(soplex);
-   return so->changeLowerReal(colidx, ub);
+   so->changeUpperReal(colidx, ub);
 }
 
 /** changes upper bound vector of columns to ub **/
