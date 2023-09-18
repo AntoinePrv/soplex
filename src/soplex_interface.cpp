@@ -107,15 +107,7 @@ int SoPlex_getIntParam(void* soplex, int paramcode)
 }
 
 /** adds a single (floating point) column **/
-void SoPlex_addColReal(
-   void* soplex,
-   double* colentries,
-   int colsize,
-   int nnonzeros,
-   double objval,
-   double lb,
-   double ub
-)
+void SoPlex_addColReal(void* soplex, double* colentries, int colsize, int nnonzeros, double objval, double lb, double ub)
 {
    SoPlex* so = (SoPlex*)(soplex);
    DSVector col(nnonzeros);
@@ -131,29 +123,15 @@ void SoPlex_addColReal(
 }
 
 /** removes a single (floating point) column **/
-void SoPlex_removeColReal(
-   void* soplex,
-   int colidx
-)
+void SoPlex_removeColReal(void* soplex, int colidx)
 {
    SoPlex* so = (SoPlex*)(soplex);
    so->removeColReal(colidx);
 }
 
 /** adds a single rational column **/
-void SoPlex_addColRational(
-   void* soplex,
-   long* colnums,
-   long* coldenoms,
-   int colsize,
-   int nnonzeros,
-   long objvalnum,
-   long objvaldenom,
-   long lbnum,
-   long lbdenom,
-   long ubnum,
-   long ubdenom
-)
+void SoPlex_addColRational(void* soplex, long* colnums, long* coldenoms, int colsize, int nnonzeros, long objvalnum,
+      long objvaldenom, long lbnum, long lbdenom, long ubnum, long ubdenom)
 {
 #ifndef SOPLEX_WITH_BOOST
    throw SPxException("Rational functions cannot be used when built without Boost.");
@@ -186,14 +164,7 @@ void SoPlex_addColRational(
 }
 
 /** adds a single (floating point) row **/
-void SoPlex_addRowReal(
-   void* soplex,
-   double* rowentries,
-   int rowsize,
-   int nnonzeros,
-   double lb,
-   double ub
-)
+void SoPlex_addRowReal(void* soplex, double* rowentries, int rowsize, int nnonzeros, double lb, double ub)
 {
    SoPlex* so = (SoPlex*)(soplex);
    DSVector row(nnonzeros);
@@ -209,27 +180,15 @@ void SoPlex_addRowReal(
 }
 
 /** removes a single (floating point) row **/
-void SoPlex_removeRowReal(
-   void* soplex,
-   int rowidx
-)
+void SoPlex_removeRowReal(void* soplex, int rowidx)
 {
    SoPlex* so = (SoPlex*)(soplex);
    so->removeRowReal(rowidx);
 }
 
 /** adds a single rational row **/
-void SoPlex_addRowRational(
-   void* soplex,
-   long* rownums,
-   long* rowdenoms,
-   int rowsize,
-   int nnonzeros,
-   long lbnum,
-   long lbdenom,
-   long ubnum,
-   long ubdenom
-)
+void SoPlex_addRowRational(void* soplex, long* rownums, long* rowdenoms, int rowsize, int nnonzeros, long lbnum,
+      long lbdenom, long ubnum, long ubdenom)
 {
 #ifndef SOPLEX_WITH_BOOST
    throw SPxException("Rational functions cannot be used when built without Boost.");
@@ -505,14 +464,7 @@ void SoPlex_changeVarBoundsReal(void* soplex, int colidx, double lb, double ub)
 }
 
 /** changes rational bounds of a column to lbnum/lbdenom and ubnum/ubdenom **/
-void SoPlex_changeVarBoundsRational(
-   void* soplex,
-   int colidx,
-   long lbnum,
-   long lbdenom,
-   long ubnum,
-   long ubdenom
-)
+void SoPlex_changeVarBoundsRational(void* soplex, int colidx, long lbnum, long lbdenom, long ubnum, long ubdenom)
 {
 #ifndef SOPLEX_WITH_BOOST
    throw SPxException("Rational functions cannot be used when built without Boost.");
@@ -625,13 +577,7 @@ int SoPlex_basisColStatus(void* soplex, int colidx)
 }
 
 /** get non-zero entries and indices of row i **/
-void SoPlex_getRowVectorReal(
-   void* soplex,
-   int i,
-   int* nnonzeros,
-   long* indices,
-   double* coefs
-)
+void SoPlex_getRowVectorReal(void* soplex, int i, int* nnonzeros, long* indices, double* coefs)
 {
    SoPlex* so = (SoPlex*)(soplex);
    DSVector row;
@@ -648,14 +594,7 @@ void SoPlex_getRowVectorReal(
 }
 
 /** get non-zero entries and indices of rational row i **/
-void SoPlex_getRowVectorRational(
-   void* soplex,
-   int i,
-   int* nnonzeros,
-   long* indices,
-   long* coefsnum,
-   long* coefsdenom
-)
+void SoPlex_getRowVectorRational(void* soplex, int i, int* nnonzeros, long* indices, long* coefsnum, long* coefsdenom)
 {
 #ifndef SOPLEX_WITH_BOOST
    throw SPxException("Rational functions cannot be used when built without Boost.");
@@ -678,12 +617,7 @@ void SoPlex_getRowVectorRational(
 }
 
 /** get lower and upper bounds of row i **/
-void SoPlex_getRowBoundsReal(
-   void* soplex,
-   int i,
-   double* lb,
-   double* ub
-)
+void SoPlex_getRowBoundsReal(void* soplex, int i, double* lb, double* ub)
 {
    SoPlex* so = (SoPlex*)(soplex);
 
@@ -692,14 +626,7 @@ void SoPlex_getRowBoundsReal(
 }
 
 /** get rational lower and upper bounds of row i **/
-void SoPlex_getRowBoundsRational(
-   void* soplex,
-   int i,
-   long* lbnum,
-   long* lbdenom,
-   long* ubnum,
-   long* ubdenom
-)
+void SoPlex_getRowBoundsRational(void* soplex, int i, long* lbnum, long* lbdenom, long* ubnum, long* ubdenom)
 {
 #ifndef SOPLEX_WITH_BOOST
    throw SPxException("Rational functions cannot be used when built without Boost.");

@@ -45,65 +45,25 @@ void SoPlex_setRealParam(void* soplex, int paramcode, double paramvalue);
 int SoPlex_getIntParam(void* soplex, int paramcode);
 
 /** adds a single (floating point) column **/
-void SoPlex_addColReal(
-   void* soplex,
-   double* colentries,
-   int colsize,
-   int nnonzeros,
-   double objval,
-   double lb,
-   double ub
-);
+void SoPlex_addColReal(void* soplex, double* colentries, int colsize, int nnonzeros, double objval, double lb,
+      double ub);
 
 /** removes a single (floating point) column **/
-void SoPlex_removeColReal(
-   void* soplex,
-   int colidx
-);
+void SoPlex_removeColReal(void* soplex, int colidx);
 
 /** adds a single rational column **/
-void SoPlex_addColRational(
-   void* soplex,
-   long* colnums,
-   long* coldenoms,
-   int colsize,
-   int nnonzeros,
-   long objvalnum,
-   long objvaldenom,
-   long lbnum,
-   long lbdenom,
-   long ubnum,
-   long ubdenom
-);
+void SoPlex_addColRational(void* soplex, long* colnums, long* coldenoms, int colsize, int nnonzeros, long objvalnum,
+      long objvaldenom, long lbnum, long lbdenom, long ubnum, long ubdenom);
 
 /** adds a single (floating point) row **/
-void SoPlex_addRowReal(
-   void* soplex,
-   double* rowentries,
-   int rowsize,
-   int nnonzeros,
-   double lb,
-   double ub
-);
+void SoPlex_addRowReal(void* soplex, double* rowentries, int rowsize, int nnonzeros, double lb, double ub);
 
 /** removes a single (floating point) row **/
-void SoPlex_removeRowReal(
-   void* soplex,
-   int rowidx
-);
+void SoPlex_removeRowReal(void* soplex, int rowidx);
 
 /** adds a single rational row **/
-void SoPlex_addRowRational(
-   void* soplex,
-   long* rownums,
-   long* rowdenoms,
-   int rowsize,
-   int nnonzeros,
-   long lbnum,
-   long lbdenom,
-   long ubnum,
-   long ubdenom
-);
+void SoPlex_addRowRational(void* soplex, long* rownums, long* rowdenoms, int rowsize, int nnonzeros, long lbnum,
+      long lbdenom, long ubnum, long ubdenom);
 
 /** gets primal solution **/
 void SoPlex_getPrimalReal(void* soplex, double* primal, int dim);
@@ -179,14 +139,7 @@ void SoPlex_changeBoundsReal(void* soplex, double* lb, double* ub, int dim);
 void SoPlex_changeVarBoundsReal(void* soplex, int colidx, double lb, double ub);
 
 /** changes rational bounds of a column to lbnum/lbdenom and ubnum/ubdenom **/
-void SoPlex_changeVarBoundsRational(
-   void* soplex,
-   int colidx,
-   long lbnum,
-   long lbdenom,
-   long ubnum,
-   long ubdenom
-);
+void SoPlex_changeVarBoundsRational(void* soplex, int colidx, long lbnum, long lbdenom, long ubnum, long ubdenom);
 
 /** changes vector of lower bounds to lb **/
 void SoPlex_changeLowerReal(void* soplex, double* lb, int dim);
@@ -229,41 +182,16 @@ int SoPlex_basisRowStatus(void* soplex, int rowidx);
 int SoPlex_basisColStatus(void* soplex, int colidx);
 
 /** get non-zero entries and indices of row i **/
-void SoPlex_getRowVectorReal(
-   void* soplex,
-   int i,
-   int* nnonzeros,
-   long* indices,
-   double* coefs
-);
+void SoPlex_getRowVectorReal(void* soplex, int i, int* nnonzeros, long* indices, double* coefs);
 
 /** get non-zero entries and indices of rational row i **/
-void SoPlex_getRowVectorRational(
-   void* soplex,
-   int i,
-   int* nnonzeros,
-   long* indices,
-   long* coefsnum,
-   long* coefsdenom
-);
+void SoPlex_getRowVectorRational(void* soplex, int i, int* nnonzeros, long* indices, long* coefsnum, long* coefsdenom);
 
 /** get lower and upper bounds of row i **/
-void SoPlex_getRowBoundsReal(
-   void* soplex,
-   int i,
-   double* lb,
-   double* ub
-);
+void SoPlex_getRowBoundsReal(void* soplex, int i, double* lb, double* ub);
 
 /** get rational lower and upper bounds of row i **/
-void SoPlex_getRowBoundsRational(
-   void* soplex,
-   int i,
-   long* lbnum,
-   long* lbdenom,
-   long* ubnum,
-   long* ubdenom
-);
+void SoPlex_getRowBoundsRational(void* soplex, int i, long* lbnum, long* lbdenom, long* ubnum, long* ubdenom);
 
 #ifdef __cplusplus
 }
