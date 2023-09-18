@@ -116,8 +116,20 @@ char* SoPlex_getPrimalRationalString(void* soplex, int dim);
 /** gets dual solution **/
 void SoPlex_getDualReal(void* soplex, double* dual, int dim);
 
-/** optimizes the given LP **/
+/** gets reduced cost vector **/
+void SoPlex_getRedCostReal(void* soplex, double* rc, int dim);
+
+/** optimizes the given LP and returns solver status **/
 int SoPlex_optimize(void* soplex);
+
+/** returns the current solver status **/
+int SoPlex_getStatus(void* soplex);
+
+/** returns the time spent in last call to solve **/
+double SoPlex_getSolvingTime(void* soplex);
+
+/** returns the number of iteration in last call to solve **/
+int SoPlex_getNumIterations(void* soplex);
 
 /** changes objective function vector to obj **/
 void SoPlex_changeObjReal(void* soplex, double* obj, int dim);
@@ -149,7 +161,7 @@ void SoPlex_changeRangeReal(void* soplex, double* lhs, double* rhs, int dim);
 /** changes both sides of a row to given lhs and rhs **/
 void SoPlex_changeRowRangeReal(void* soplex, int rowidx, double lhs, double rhs);
 
-/** write LP to file **/
+/** write LP to file; LP or MPS format is chosen from the extension in filename **/
 void SoPlex_writeFileReal(void* soplex, char* filename);
 
 /** returns the objective value if a primal solution is available **/
@@ -184,6 +196,9 @@ void SoPlex_changeVarLowerReal(void* soplex, int colidx, double lb);
 
 /** gets lower bound vector of columns into lb **/
 void SoPlex_getLowerReal(void* soplex, double* lb, int dim);
+
+/** gets objective vector into obj **/
+void SoPlex_getObjReal(void* soplex, double* obj, int dim);
 
 /** changes vector of upper bounds to ub **/
 void SoPlex_changeUpperReal(void* soplex, double* ub, int dim);

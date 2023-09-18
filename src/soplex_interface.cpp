@@ -301,11 +301,39 @@ void SoPlex_getDualReal(void* soplex, double* dual, int dim)
    so->getDualReal(dual, dim);
 }
 
+/** gets reduced cost vector **/
+void SoPlex_getRedCostReal(void* soplex, double* rc, int dim)
+{
+   SoPlex* so = (SoPlex*)(soplex);
+   so->getRedCostReal(rc, dim);
+}
+
 /** optimizes the given LP **/
 int SoPlex_optimize(void* soplex)
 {
    SoPlex* so = (SoPlex*)(soplex);
    return so->optimize();
+}
+
+/** returns the current solver status **/
+int SoPlex_getStatus(void* soplex)
+{
+   SoPlex* so = (SoPlex*)(soplex);
+   return so->status();
+}
+
+/** returns the time spent in last call to solve **/
+double SoPlex_getSolvingTime(void* soplex)
+{
+   SoPlex* so = (SoPlex*)(soplex);
+   return so->solveTime();
+}
+
+/** returns the number of iteration in last call to solve **/
+int SoPlex_getNumIterations(void* soplex)
+{
+   SoPlex* so = (SoPlex*)(soplex);
+   return so->numIterations();
 }
 
 /** changes objective function vector to obj **/
@@ -425,7 +453,7 @@ void SoPlex_changeRhsRational(void* soplex, long* rhsnums, long* rhsdenoms, int 
    so->changeRhsRational(rhs);
 }
 
-/** write LP to file **/
+/** write LP to file; LP or MPS format is chosen from the extension in filename **/
 void SoPlex_writeFileReal(void* soplex, char* filename)
 {
    SoPlex* so = (SoPlex*)(soplex);
@@ -526,6 +554,18 @@ void SoPlex_getLowerReal(void* soplex, double* lb, int dim)
 
    for(int i = 0; i < dim; ++i)
       lb[i] = lbvec[i];
+}
+
+/** gets objective vector into obj **/
+void SoPlex_getObjReal(void* soplex, double* obj, int dim)
+{
+   SoPlex* so = (SoPlex*)(soplex);
+   Vector objvec(dim);
+
+   so->getObjReal(objvec);
+
+   for(int i = 0; i < dim; ++i)
+      obj[i] = objvec[i];
 }
 
 /** changes vector of upper bounds to ub **/
