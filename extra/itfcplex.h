@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -31,9 +31,6 @@
  */
 #ifndef _ITFCPLEX_H_
 #define _ITFCPLEX_H_
-
-    /** what to use as $\infty$ */
-#define INFBOUND 1e+100 /* SoPlex::infinity ; */
 
     /** optimality status */
 #define  CPX_OPTIMAL 1

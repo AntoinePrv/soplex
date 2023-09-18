@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -35,7 +35,7 @@
 #include "soplex/rational.h"
 #include "soplex/basevectors.h"
 
-#define WITH_L_ROWS 1
+#define SOPLEX_WITH_L_ROWS 1
 
 namespace soplex
 {

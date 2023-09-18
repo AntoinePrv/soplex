@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -39,7 +39,7 @@
 namespace soplex
 {
 /// maximum nr. of factorization updates allowed before refactorization.
-#define MAXUPDATES      1000
+#define SOPLEX_MAXUPDATES      1000
 
 /**@brief   Implementation of Sparse Linear Solver with Rational precision.
  * @ingroup Algo
@@ -109,6 +109,8 @@ protected:
    void freeAll();
    ///
    void changeEta(int idx, SSVectorRational& eta);
+   ///
+   void init();
    ///@}
 
 
@@ -380,7 +382,7 @@ public:
       l.rorig = 0;
       l.rperm = 0;
 
-      SLUFactorRational::clear(); // clear() is virtual
+      SLUFactorRational::init();
 
       factorCount = 0;
       timeLimit = -1.0;

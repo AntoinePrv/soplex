@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -48,11 +48,11 @@ void SPxAutoPR<R>::clear()
 }
 
 template <class R>
-void SPxAutoPR<R>::setEpsilon(R eps)
+void SPxAutoPR<R>::setPricingTolerance(R tol)
 {
-   steep.setEpsilon(eps);
-   devex.setEpsilon(eps);
-   this->theeps = eps;
+   steep.setPricingTolerance(tol);
+   devex.setPricingTolerance(tol);
+   this->thetolerance = tol;
 }
 
 template <class R>
@@ -95,8 +95,8 @@ template <class R>
 int SPxAutoPR<R>::selectLeave()
 {
    if(setActivePricer(SPxSolverBase<R>::LEAVE))
-      MSG_INFO1((*this->thesolver->spxout),
-                (*this->thesolver->spxout) << " --- active pricer: " << activepricer->getName() << std::endl;)
+      SPX_MSG_INFO1((*this->thesolver->spxout),
+                    (*this->thesolver->spxout) << " --- active pricer: " << activepricer->getName() << std::endl;)
 
       return activepricer->selectLeave();
 }
@@ -111,8 +111,8 @@ template <class R>
 SPxId SPxAutoPR<R>::selectEnter()
 {
    if(setActivePricer(SPxSolverBase<R>::ENTER))
-      MSG_INFO1((*this->thesolver->spxout),
-                (*this->thesolver->spxout) << " --- active pricer: " << activepricer->getName() << std::endl;)
+      SPX_MSG_INFO1((*this->thesolver->spxout),
+                    (*this->thesolver->spxout) << " --- active pricer: " << activepricer->getName() << std::endl;)
 
       return activepricer->selectEnter();
 }

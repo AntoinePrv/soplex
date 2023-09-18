@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -129,8 +129,8 @@ public:
    ///
    SPxSteepPR(const char* name = "Steep", Setup mode = DEFAULT)
       : SPxPricer<R>(name)
-      , workVec(0)
-      , workRhs(0)
+      , workVec(0, 0)
+      , workRhs(0, 0)
       , pi_p(1.0)
       , setup(mode)
       , refined(false)

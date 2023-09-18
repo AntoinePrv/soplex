@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -43,7 +43,7 @@ void NameSet::add(DataKey& p_key, const char* str)
 
    if(!hashtab.has(nstr))
    {
-      if(size() + 1 > max() * HASHTABLE_FILLFACTOR)
+      if(size() + 1 > max() * SOPLEX_HASHTABLE_FILLFACTOR)
       {
          assert(factor >= 1);
          reMax(int(factor * max() + 8));
@@ -235,7 +235,7 @@ bool NameSet::isConsistent() const
 #ifdef ENABLE_CONSISTENCY_CHECKS
 
    if(memused > memmax)
-      return MSGinconsistent("NameSet");
+      return SPX_MSG_INCONSISTENT("NameSet");
 
    int i;
 
@@ -244,10 +244,10 @@ bool NameSet::isConsistent() const
       const char* t = &mem[set[i]];
 
       if(!has(t))
-         return MSGinconsistent("NameSet");
+         return SPX_MSG_INCONSISTENT("NameSet");
 
       if(strcmp(t, operator[](key(t))))
-         return MSGinconsistent("NameSet");
+         return SPX_MSG_INCONSISTENT("NameSet");
    }
 
    return set.isConsistent() && hashtab.isConsistent();

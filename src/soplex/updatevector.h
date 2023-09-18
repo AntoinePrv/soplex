@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -77,10 +77,10 @@ public:
    ///@{
    /// default constructor.
    explicit
-   UpdateVector(int p_dim /*=0*/, R p_eps /*=1e-16*/)
+   UpdateVector<R>(int p_dim /*=0*/, std::shared_ptr<Tolerances> tols = nullptr)
       : VectorBase<R> (p_dim)
       , theval(0)
-      , thedelta(p_dim, p_eps)
+      , thedelta(p_dim, tols)
    {
       assert(isConsistent());
    }
@@ -168,6 +168,12 @@ public:
    {
       VectorBase<R>::reDim(newdim);
       thedelta.reDim(newdim);
+   }
+
+   /// set tolerances
+   void setTolerances(std::shared_ptr<Tolerances>& tolerances)
+   {
+      thedelta.setTolerances(tolerances);
    }
    ///@}
 

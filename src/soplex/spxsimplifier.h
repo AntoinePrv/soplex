@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -51,7 +51,6 @@ template <class R>
 class SPxSimplifier
 {
 protected:
-
    //-------------------------------------
    /**@name Protected Data */
    ///@{
@@ -80,6 +79,8 @@ protected:
    R        m_minReduction;
    /// message handler
    SPxOut*     spxout;
+   ///< tolerances used by the solver
+   std::shared_ptr<Tolerances> _tolerances;
    ///@}
 
 public:
@@ -191,10 +192,8 @@ public:
    //-------------------------------------
    /**@name Simplifying / unsimplifying */
    ///@{
-   /// simplify SPxLP \p lp with identical primal and dual feasibility tolerance.
-   virtual Result simplify(SPxLPBase<R>& lp, R eps, R delta, Real remainingTime) = 0;
-   /// simplify SPxLP \p lp with independent primal and dual feasibility tolerance.
-   virtual Result simplify(SPxLPBase<R>& lp, R eps, R feastol, R opttol, Real remainingTime,
+   /// simplify SPxLP \p lp
+   virtual Result simplify(SPxLPBase<R>& lp, Real remainingTime,
                            bool keepbounds = false, uint32_t seed = 0) = 0;
    /// reconstructs an optimal solution for the unsimplified LP.
    virtual void unsimplify(const VectorBase<R>&, const VectorBase<R>&, const VectorBase<R>&,
@@ -263,6 +262,17 @@ public:
    void setOutstream(SPxOut& newOutstream)
    {
       spxout = &newOutstream;
+   }
+
+   /// set the _tolerances member variable
+   virtual void setTolerances(std::shared_ptr<Tolerances> newTolerances)
+   {
+      this->_tolerances = newTolerances;
+   }
+   /// get the _tolerances member variable
+   const std::shared_ptr<Tolerances> tolerances() const
+   {
+      return _tolerances;
    }
 
 };

@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -129,16 +129,16 @@ bool IdxSet::isConsistent() const
    int i, j;
 
    if(len > 0 && idx == 0)
-      return MSGinconsistent("IdxSet");
+      return SPX_MSG_INCONSISTENT("IdxSet");
 
    for(i = 0; i < size(); ++i)
    {
       if(index(i) < 0)
-         return MSGinconsistent("IdxSet");
+         return SPX_MSG_INCONSISTENT("IdxSet");
 
       for(j = 0; j < i; j++)
          if(index(i) == index(j))
-            return MSGinconsistent("IdxSet");
+            return SPX_MSG_INCONSISTENT("IdxSet");
    }
 
 #endif

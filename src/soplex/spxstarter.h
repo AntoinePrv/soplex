@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -57,6 +57,8 @@ protected:
    ///@{
    /// name of the starter
    const char* m_name;
+   /// tolerances for the starter
+   std::shared_ptr<Tolerances> _tolerances;
    ///@}
 
 public:
@@ -107,6 +109,17 @@ public:
    /// generates start basis for loaded basis.
    virtual void generate(SPxSolverBase<R>& base) = 0;
    ///@}
+
+   /// set the tolerances to be used by the starter
+   virtual void setTolerances(const std::shared_ptr<Tolerances>& tolerances)
+   {
+      _tolerances = tolerances;
+   }
+   /// get the toelrances used by the starter
+   virtual const std::shared_ptr<Tolerances>& tolerances() const
+   {
+      return _tolerances;
+   }
 
    //-------------------------------------
    /**@name Misc */

@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -68,7 +68,7 @@ int main(int argc, const char* const argv[])
       assert( work.isConsistent() );
 
       /* solve the problem */
-      // Param::setVerbose(5);
+      //work.tolerances()->setVerbose(5);
 
       /* uncomment to yield faster way to desaster: */
       work.solve();

@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -245,7 +245,7 @@ public:
    ///
    void syntaxError()
    {
-      MSG_ERROR(std::cerr << "Syntax error in line " << m_lineno << std::endl;)
+      SPX_MSG_ERROR(std::cerr << "Syntax error in line " << m_lineno << std::endl;)
       m_section = ENDATA;
       m_has_error = true;
    }
@@ -256,16 +256,16 @@ public:
    {
       if(m_ignored < m_max_ignore)
       {
-         MSG_ERROR(std::cerr << "Warning: line " << m_lineno << ": "
-                   << what << " \"" << what_name << "\""
-                   << " for " << entity << " \""
-                   << entity_name << "\" ignored" << std::endl;)
+         SPX_MSG_ERROR(std::cerr << "Warning: line " << m_lineno << ": "
+                       << what << " \"" << what_name << "\""
+                       << " for " << entity << " \""
+                       << entity_name << "\" ignored" << std::endl;)
          ++m_ignored;
 
          if(m_ignored == m_max_ignore)
-            MSG_ERROR(std::cerr << "Warning: This was the " << m_max_ignore
-                      << " ignored entry. No further warnings on "
-                      << "ignored entries will be given." << std::endl;)
+            SPX_MSG_ERROR(std::cerr << "Warning: This was the " << m_max_ignore
+                          << " ignored entry. No further warnings on "
+                          << "ignored entries will be given." << std::endl;)
          }
    }
    ///@}

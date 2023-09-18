@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -40,7 +40,7 @@
 
 namespace soplex
 {
-#define MINSTABILITYRAT    REAL(4e-2)
+#define SOPLEX_MINSTABILITYRAT    SOPLEX_REAL(4e-2)
 
 inline void SLUFactorRational::solveRight(VectorRational& x, const VectorRational& b) //const
 {
@@ -421,15 +421,13 @@ inline SLUFactorRational::Status SLUFactorRational::change(
 
    usetup = false;
 
-   MSG_DEBUG(std::cout << "DSLUFA01\tupdated\t\tstability = " << stability()
-             << std::endl;)
+   SPxOut::debug(this, "DSLUFA01\tupdated\t\tstability = {}\n", stability());
 
    return status();
 }
 
-inline void SLUFactorRational::clear()
+inline void SLUFactorRational::init()
 {
-
    rowMemMult    = 5;          /* factor of minimum Memory * #of nonzeros */
    colMemMult    = 5;          /* factor of minimum Memory * #of nonzeros */
    lMemMult      = 1;          /* factor of minimum Memory * #of nonzeros */
@@ -442,7 +440,7 @@ inline void SLUFactorRational::clear()
    maxabs        = 1;
    initMaxabs    = 1;
    lastThreshold = minThreshold;
-   minStability  = MINSTABILITYRAT;
+   minStability  = SOPLEX_MINSTABILITYRAT;
    stat          = UNLOADED;
 
    vec.clear();
@@ -482,8 +480,8 @@ inline void SLUFactorRational::clear()
    if(l.row)
       spx_free(l.row);
 
-   // G clear() is used in constructor of SLUFactorRational so we have to
-   // G clean up if anything goes wrong here
+   // init() is used in constructor of SLUFactorRational so we have to
+   // clean up if anything goes wrong here
    try
    {
       u.row.val.reDim(100);
@@ -500,6 +498,12 @@ inline void SLUFactorRational::clear()
       freeAll();
       throw x;
    }
+}
+
+inline void SLUFactorRational::clear()
+{
+   if(stat != UNLOADED)
+      init();
 }
 
 /** assignment used to implement operator=() and copy constructor.
@@ -822,14 +826,14 @@ inline SLUFactorRational::Status SLUFactorRational::load(const SVectorRational* 
       spx_realloc(u.col.max,   thedim + 1);
       spx_realloc(u.col.start, thedim + 1);
 
-      l.startSize = thedim + MAXUPDATES;
+      l.startSize = thedim + SOPLEX_MAXUPDATES;
 
       spx_realloc(l.row,   l.startSize);
       spx_realloc(l.start, l.startSize);
    }
    // the last factorization was reasonably stable, so we decrease the Markowitz threshold (stored in lastThreshold) in
    // order favour sparsity
-   else if(lastStability > 2.0 * MINSTABILITYRAT)
+   else if(lastStability > 2.0 * SOPLEX_MINSTABILITYRAT)
    {
       // we reset lastThreshold to its previous value in the sequence minThreshold, betterThreshold(minThreshold),
       // betterThreshold(betterThreshold(minThreshold)), ...
@@ -846,7 +850,7 @@ inline SLUFactorRational::Status SLUFactorRational::load(const SVectorRational* 
 
       // we reset the minimum stability (which might have been decreased below) to ensure that the increased sparsity
       // does not hurt the stability
-      minStability  = 2 * MINSTABILITYRAT;
+      minStability  = 2 * SOPLEX_MINSTABILITYRAT;
    }
 
    u.row.list.idx      = thedim;
@@ -862,10 +866,10 @@ inline SLUFactorRational::Status SLUFactorRational::load(const SVectorRational* 
    stat = OK;
    factor(matrix, lastThreshold);
 
-   MSG_DEBUG(std::cout << "DSLUFA02 threshold = " << lastThreshold
-             << "\tstability = " << stability()
-             << "\tMINSTABILITYRAT = " << MINSTABILITYRAT << std::endl;)
-   MSG_DEBUG(
+
+   SPxOut::debug(this, "DSLUFA02 threshold = {}\tstability = {}\tSOPLEX_MINSTABILITYRAT = {}\n",
+                 lastThreshold, stability(), SOPLEX_MINSTABILITYRAT);
+   SPX_DEBUG(
       int i;
       FILE* fl = fopen("dump.lp", "w");
       std::cout << "DSLUFA03 Basis:\n";

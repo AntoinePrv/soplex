@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -131,13 +131,13 @@ public:
 #ifdef ENABLE_CONSISTENCY_CHECKS
 
       if(mem() != &themem)
-         return MSGinconsistent("UnitVectorBase");
+         return SPX_MSG_INCONSISTENT("UnitVectorBase");
 
       if(size() != 1)
-         return MSGinconsistent("UnitVectorBase");
+         return SPX_MSG_INCONSISTENT("UnitVectorBase");
 
       if(max() != 1)
-         return MSGinconsistent("UnitVectorBase");
+         return SPX_MSG_INCONSISTENT("UnitVectorBase");
 
       return SVectorBase<R>::isConsistent();
 #else

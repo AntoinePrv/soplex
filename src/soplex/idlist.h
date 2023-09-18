@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -340,10 +340,10 @@ public:
       for(const T* it = my_first; it; it = next(it))
       {
          if(it != my_first && it->prev()->next() != it)
-            return MSGinconsistent("IdList");
+            return SPX_MSG_INCONSISTENT("IdList");
 
          if(it != my_last && it->next()->prev() != it)
-            return MSGinconsistent("IdList");
+            return SPX_MSG_INCONSISTENT("IdList");
       }
 
       return IsList<T>::isConsistent();

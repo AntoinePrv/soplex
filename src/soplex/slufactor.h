@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -38,7 +38,7 @@
 namespace soplex
 {
 /// maximum nr. of factorization updates allowed before refactorization.
-#define MAXUPDATES      1000
+#define SOPLEX_MAXUPDATES      1000
 
 /**@brief   Implementation of Sparse Linear Solver.
  * @ingroup Algo
@@ -93,8 +93,6 @@ protected:
    R minThreshold;
    /// minimum stability to achieve by setting threshold.
    R minStability;
-   /// |x| < epsililon is considered to be 0.
-   R epsilon;
    /// Time spent in solves
    Timer* solveTime;
    Timer::TYPE timerType;
@@ -303,6 +301,16 @@ public:
 
    /// consistency check.
    bool isConsistent() const;
+
+   /// set tolerances
+   virtual void setTolerances(std::shared_ptr<Tolerances> tolerances)
+   {
+      this->_tolerances = tolerances;
+      this->eta.setTolerances(tolerances);
+      this->forest.setTolerances(tolerances);
+      this->ssvec.setTolerances(tolerances);
+   }
+
    ///@}
 
    //------------------------------------

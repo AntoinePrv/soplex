@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -74,7 +74,7 @@ SPxId SPxParMultPR<R>::selectEnter()
    if(this->thesolver->pricing() == SPxSolverBase<R>::PARTIAL)
    {
       R val;
-      R eps = -this->theeps;
+      R tol = -this->thetolerance;
       lastlast = last;
 
       for(i = used - 1; i >= 0; --i)
@@ -89,7 +89,7 @@ SPxId SPxParMultPR<R>::selectEnter()
          else
             pricSet[i].test = val = this->thesolver->coTest()[n];
 
-         if(val >= eps)
+         if(val >= tol)
             pricSet[i] = pricSet[--used];
       }
 
@@ -116,7 +116,7 @@ SPxId SPxParMultPR<R>::selectEnter()
             this->thesolver->computePvec(i);
             x = this->thesolver->computeTest(i);
 
-            if(x < eps)
+            if(x < tol)
             {
                pricSet[used].id = this->thesolver->id(i);
                pricSet[used].test = x;
@@ -129,7 +129,7 @@ SPxId SPxParMultPR<R>::selectEnter()
          {
             x = this->thesolver->coTest()[i];
 
-            if(x < eps)
+            if(x < tol)
             {
                pricSet[used].id = this->thesolver->coId(i);
                pricSet[used].test = x;
@@ -168,7 +168,7 @@ SPxId SPxParMultPR<R>::selectEnter()
    else
    {
       assert(this->thesolver->pricing() == SPxSolverBase<R>::FULL);
-      R bestx = -this->theeps;
+      R bestx = -this->thetolerance;
 
       for(i = this->thesolver->dim() - 1; i >= 0; --i)
       {
@@ -205,7 +205,7 @@ int SPxParMultPR<R>::selectLeave()
 {
    int i, n;
    R x;
-   R best = -this->theeps;
+   R best = -this->thetolerance;
    //    const R* up  = this->thesolver->ubBound();
    //    const R* low = this->thesolver->lbBound();
 

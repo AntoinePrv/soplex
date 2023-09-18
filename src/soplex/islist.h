@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -438,13 +438,13 @@ public:
 #ifdef ENABLE_CONSISTENCY_CHECKS
 
       if(first() != 0 && last() == 0)
-         return MSGinconsistent("IsList");
+         return SPX_MSG_INCONSISTENT("IsList");
 
       if(first() == 0 && last() != 0)
-         return MSGinconsistent("IsList");
+         return SPX_MSG_INCONSISTENT("IsList");
 
       if(first() && find(last()) == 0)
-         return MSGinconsistent("IsList");
+         return SPX_MSG_INCONSISTENT("IsList");
 
 #endif
 

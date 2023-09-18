@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -90,8 +90,8 @@ bool SPxSolverBase<R>::writeState(
    else if(!strcmp(ratiotester()->getName(), "Bound Flipping"))
       ofs << "3" << std::endl;
 
-   ofs << "real:feastol = " << feastol() << std::endl;
-   ofs << "real:opttol = " << opttol() << std::endl;
+   ofs << "real:feastol = " << tolerances()->floatingPointFeastol() << std::endl;
+   ofs << "real:opttol = " << tolerances()->floatingPointOpttol() << std::endl;
    ofs << "real:epsilon_zero = " << epsilon() << std::endl;
    ofs << "real:infty = " << infinity << std::endl;
    ofs << "uint:random_seed = " << random.getSeed() << std::endl;

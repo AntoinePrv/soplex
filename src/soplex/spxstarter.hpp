@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -33,7 +33,7 @@ template <class R>
 bool SPxStarter<R>::isConsistent() const
 {
 #ifdef ENABLE_CONSISTENCY_CHECKS
-   MSG_ERROR(std::cerr << "ESTART95 Not yet implemented" << std::endl;)
+   SPX_MSG_ERROR(std::cerr << "ESTART95 Not yet implemented" << std::endl;)
 #endif
 
    return true;

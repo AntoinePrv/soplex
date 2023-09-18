@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -66,8 +66,7 @@ private:
       const R* upd,      ///< update VectorBase<R> for \p vec
       const R* vec,      ///< current vector
       const R* low,      ///< lower bounds for \p vec
-      const R* up,       ///< upper bounds for \p vec
-      R epsilon          ///< what is 0?
+      const R* up        ///< upper bounds for \p vec
    ) const;
 
    ///
@@ -79,8 +78,7 @@ private:
       const R* upd,      ///< update VectorBase<R> for \p vec
       const R* vec,      ///< current vector
       const R* low,      ///< lower bounds for \p vec
-      const R* up,       ///< upper bounds for \p vec
-      R epsilon          ///< what is 0?
+      const R* up        ///< upper bounds for \p vec
    ) const;
    ///@}
 

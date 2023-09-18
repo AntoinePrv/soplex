@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -275,7 +275,7 @@ public:
          break;
 
       case LPRowBase<R>::RANGE:
-         MSG_ERROR(std::cerr << "EROWST01 RANGE not supported in LPRowSet::setType()" << std::endl);
+         SPX_MSG_ERROR(std::cerr << "EROWST01 RANGE not supported in LPRowSet::setType()" << std::endl);
          throw SPxInternalCodeException("XROWST01 This should never happen.");
 
       default:
@@ -664,13 +664,13 @@ public:
       const int ldim = left.dim();
 
       if(ldim != right.dim())
-         return MSGinconsistent("LPRowSetBase");
+         return SPX_MSG_INCONSISTENT("LPRowSetBase");
 
       if(ldim != object.dim())
-         return MSGinconsistent("LPRowSetBase");
+         return SPX_MSG_INCONSISTENT("LPRowSetBase");
 
       if(ldim != num())
-         return MSGinconsistent("LPRowSetBase");
+         return SPX_MSG_INCONSISTENT("LPRowSetBase");
 
       return SVSetBase<R>::isConsistent();
 #else

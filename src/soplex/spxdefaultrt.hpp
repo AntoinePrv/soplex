@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -120,7 +120,7 @@ int SPxDefaultRT<R>::selectLeave(R& val, R, bool)
          }
       }
 
-      ASSERT_WARN("WDEFRT01", val > -epsilon);
+      SOPLEX_ASSERT_WARN("WDEFRT01", val > -epsilon);
    }
    else
    {
@@ -174,7 +174,7 @@ int SPxDefaultRT<R>::selectLeave(R& val, R, bool)
          }
       }
 
-      ASSERT_WARN("WDEFRT02", val < epsilon);
+      SOPLEX_ASSERT_WARN("WDEFRT02", val < epsilon);
    }
 
    return leave;
@@ -390,8 +390,7 @@ SPxId SPxDefaultRT<R>::selectEnter(R& max, int, bool)
 
    if(enterId.isValid() && this->solver()->isBasic(enterId))
    {
-      MSG_DEBUG(std::cout << "DDEFRT01 isValid() && isBasic(): max=" << max
-                << std::endl;)
+      SPxOut::debug(this, "DDEFRT01 isValid() && isBasic(): max={}\n", max);
 
       if(cnum >= 0)
          this->solver()->coPvec().delta().clearNum(cnum);
@@ -401,7 +400,7 @@ SPxId SPxDefaultRT<R>::selectEnter(R& max, int, bool)
       return SPxDefaultRT<R>::selectEnter(max, 0, false);
    }
 
-   MSG_DEBUG(
+   SPX_DEBUG(
 
       if(!enterId.isValid())
       std::cout << "DDEFRT02 !isValid(): max=" << max << ", x=" << x << std::endl;

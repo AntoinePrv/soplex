@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -837,7 +837,7 @@ public:
          const int my_max = max();
 
          if(my_size < 0 || my_max < 0 || my_size > my_max)
-            return MSGinconsistent("SVectorBase");
+            return SPX_MSG_INCONSISTENT("SVectorBase");
 
          for(int i = 1; i < my_size; ++i)
          {
@@ -845,7 +845,7 @@ public:
             {
                // allow trailing zeros
                if(m_elem[i].idx == m_elem[j].idx && m_elem[i].val != 0)
-                  return MSGinconsistent("SVectorBase");
+                  return SPX_MSG_INCONSISTENT("SVectorBase");
             }
          }
       }

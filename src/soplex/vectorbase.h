@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -426,13 +426,13 @@ public:
    {
       assert(dim() > 0);
 
-      // A helper function for the std::min_element. Because we compare the absolute value.
+      // A helper function for the SOPLEX_MIN_element. Because we compare the absolute value.
       auto absCmpr = [](R a, R b)
       {
          return (spxAbs(a) < spxAbs(b));
       };
 
-      auto minReference = std::min_element(val.begin(), val.end(), absCmpr);
+      auto minReference = SOPLEX_MIN_element(val.begin(), val.end(), absCmpr);
 
       R mini = spxAbs(*minReference);
 

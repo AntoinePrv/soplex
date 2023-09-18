@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -55,7 +55,7 @@ bool UpdateVector<R>::isConsistent() const
 #ifdef ENABLE_CONSISTENCY_CHECKS
 
    if(this->dim() != thedelta.dim())
-      return MSGinconsistent("UpdateVector");
+      return SPX_MSG_INCONSISTENT("UpdateVector");
 
    return VectorBase<R>::isConsistent() && thedelta.isConsistent();
 #else

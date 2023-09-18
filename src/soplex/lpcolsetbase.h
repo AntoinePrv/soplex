@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -574,13 +574,13 @@ public:
 #ifdef ENABLE_CONSISTENCY_CHECKS
 
       if(low.dim() != object.dim())
-         return MSGinconsistent("LPColSetBase");
+         return SPX_MSG_INCONSISTENT("LPColSetBase");
 
       if(low.dim() != up.dim())
-         return MSGinconsistent("LPColSetBase");
+         return SPX_MSG_INCONSISTENT("LPColSetBase");
 
       if(low.dim() != num())
-         return MSGinconsistent("LPColSetBase");
+         return SPX_MSG_INCONSISTENT("LPColSetBase");
 
       return low.isConsistent() && up.isConsistent() && SVSetBase<R>::isConsistent();
 #else

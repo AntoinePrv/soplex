@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -127,25 +127,25 @@ void Validation<R>::validateSolveReal(SoPlexBase<R>& soplex)
       soplex.getRedCostViolation(maxRedCostViolation, sumRedCostViolation);
       soplex.getDualViolation(maxDualViolation, sumDualViolation);
 
-      if(! LE(maxBoundViolation, validatetolerance))
+      if(! LE(maxBoundViolation, validatetolerance, soplex.tolerances()->epsilon()))
       {
          passedValidation = false;
          reason += "Bound Violation; ";
       }
 
-      if(! LE(maxRowViolation, validatetolerance))
+      if(! LE(maxRowViolation, validatetolerance, soplex.tolerances()->epsilon()))
       {
          passedValidation = false;
          reason += "Row Violation; ";
       }
 
-      if(! LE(maxRedCostViolation, validatetolerance))
+      if(! LE(maxRedCostViolation, validatetolerance, soplex.tolerances()->epsilon()))
       {
          passedValidation = false;
          reason += "Reduced Cost Violation; ";
       }
 
-      if(! LE(maxDualViolation, validatetolerance))
+      if(! LE(maxDualViolation, validatetolerance, soplex.tolerances()->epsilon()))
       {
          passedValidation = false;
          reason += "Dual Violation; ";

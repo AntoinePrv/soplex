@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -73,7 +73,7 @@ public:
    /**@name Access / modification */
    ///@{
    /// sets the epsilon
-   virtual void setEpsilon(R eps);
+   virtual void setPricingTolerance(R tol);
    /// sets the solver
    virtual void load(SPxSolverBase<R>* solver);
    /// clears all pricers and unselects the current pricer

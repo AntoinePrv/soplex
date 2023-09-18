@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -210,8 +210,8 @@ public:
          break;
 
       case RANGE:
-         MSG_ERROR(std::cerr << "ELPROW01 RANGE not supported in LPRow::setType()"
-                   << std::endl;)
+         SPX_MSG_ERROR(std::cerr << "ELPROW01 RANGE not supported in LPRow::setType()"
+                       << std::endl;)
          throw SPxInternalCodeException("XLPROW01 This should never happen.");
 
       default:

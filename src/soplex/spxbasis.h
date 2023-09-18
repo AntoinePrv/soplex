@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -50,7 +50,7 @@
 #include "soplex/spxout.h"
 #include "soplex/timerfactory.h"
 
-//#define MEASUREUPDATETIME
+//#define SOPLEX_MEASUREUPDATETIME
 
 namespace soplex
 {
@@ -445,11 +445,8 @@ public:
 
       if(thestatus != stat)
       {
-#ifdef SOPLEX_DEBUG
-         MSG_DEBUG(std::cout << "DBSTAT01 SPxBasisBase<R>::setStatus(): status: "
-                   << int(thestatus) << " (" << thestatus << ") -> "
-                   << int(stat) << " (" << stat << ")" << std::endl;)
-#endif
+         SPxOut::debug(this, "DBSTAT01 SPxBasisBase<R>::setStatus(): status: {} ({}) -> {} ({})\n",
+                       int(thestatus), thestatus, int(stat), stat);
 
          thestatus = stat;
 
@@ -948,7 +945,7 @@ public:
    {
       std::stringstream s;
       s  << factor->statistics()
-#ifdef MEASUREUPDATETIME
+#ifdef SOPLEX_MEASUREUPDATETIME
          << "Updates            : " << std::setw(10) << getTotalUpdateCount() << std::endl
          << "  Time spent       : " << std::setw(10) << getTotalUpdateTime() << std::endl
 #endif

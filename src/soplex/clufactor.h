@@ -3,7 +3,7 @@
 /*                  This file is part of the class library                   */
 /*       SoPlex --- the Sequential object-oriented simPlex.                  */
 /*                                                                           */
-/*  Copyright 1996-2022 Zuse Institute Berlin                                */
+/*  Copyright (c) 1996-2023 Zuse Institute Berlin (ZIB)                      */
 /*                                                                           */
 /*  Licensed under the Apache License, Version 2.0 (the "License");          */
 /*  you may not use this file except in compliance with the License.         */
@@ -35,7 +35,7 @@
 
 #include "vector"
 
-#define WITH_L_ROWS 1
+#define SOPLEX_WITH_L_ROWS 1
 
 namespace soplex
 {
@@ -49,6 +49,17 @@ template <class R>
 class CLUFactor
 {
 public:
+
+   /// set tolerances
+   void setTolerances(std::shared_ptr<Tolerances> tolerances)
+   {
+      this->_tolerances = tolerances;
+   }
+   /// get tolerances
+   const std::shared_ptr<Tolerances> tolerances() const
+   {
+      return _tolerances;
+   }
 
    //----------------------------------------
    /**@name Public types */
@@ -216,6 +227,7 @@ protected:
    Timer*  factorTime;        ///< Time spent in factorizations
    int     factorCount;       ///< Number of factorizations
    int     hugeValues;        ///< number of times huge values occurred during solve (only used in debug mode)
+   std::shared_ptr<Tolerances> _tolerances; ///< Tolerances for the factorization
    ///@}
 
 private:

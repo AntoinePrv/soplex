@@ -9,8 +9,8 @@
   <body>
     <div style="display: grid; grid-template-columns: 1fr 1fr">
       <textarea id="input" style="height: 700px">
-      </textarea>
-      <textarea id="output"></textarea>
+      </textarea>    
+      <textarea id="output"></textarea>    
       <button id="run">Optimize!</button>
     </div>
     {{{ SCRIPT }}}
@@ -33,10 +33,10 @@
         const soplex = await SoPlex({
           print: printInTextarea,
           printErr: printInTextarea
-        })
+        })        
 
         const inputTextarea = document.getElementById('input');
-        inputTextarea.value = `Maximize
+        inputTextarea.value = `Maximize 
  obj: x1 + 2 x2 + 3 x3 + x4
 Subject To
  c1: - x1 + x2 + x3 + 10 x4 <= 20
